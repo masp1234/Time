@@ -1,5 +1,5 @@
 body {
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.899);
 }
 
 .text {
@@ -12,9 +12,16 @@ button {
     padding: 12px 20px;
     border-radius: 10px;
     font-weight: bold;
+    color: rgba(0, 0, 0, 0.899);
+    
+}
+button:active {
+    transform: scale(0.98);
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+    
 }
 
-#right-answer-counter {
+#total-points-text {
     margin-bottom: 30px;
     display: block;
     font-size: 20px;

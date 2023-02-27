@@ -1,8 +1,14 @@
 let timeZones = [];
 
-let currentTimeZoneQuestion;
+let currentTimezoneQuestion;
 
 let rightAnswerCounter = 0;
+
+let possiblePoints = 20;
+
+let totalPoints = 0;
+
+const results = [];
 
 document.getElementById('submit-answer').addEventListener('click', () => {
     const answer = document.getElementById('timezone-answer').value;
@@ -10,9 +16,9 @@ document.getElementById('submit-answer').addEventListener('click', () => {
 });
 
 document.getElementById('skip-question').addEventListener('click', () => {
+    subtractPoints(2);
     nextQuestion();
 });
-
 
 const fetchData = async(url, settings) => {
     const response = await fetch(url, settings);
@@ -32,30 +38,56 @@ const getTimeZones = async () => {
 
 const checkAnswer = async answer => {
     const timezone = await getTimeZone();
+    const correctAnswer = timezone.datetime.substring(11, 16);
+    if (answer === correctAnswer) {
+        rightAnswerCounter++;
+        addPoints(possiblePoints);
+        nextQuestion();
+    }  
+    else possiblePoints = possiblePoints - 4;
     
-    if (answer === timezone.datetime.substring(11, 16)) {
-        updateRightAnswerCounter();
-    };
-    nextQuestion();
+    if (possiblePoints <= 0) {
+        subtractPoints(5);
+        nextQuestion();
+    }
+    addResult(answer, correctAnswer, currentTimezoneQuestion);
 };
 
 
 const nextQuestion = () => {
-    currentTimeZoneQuestion = timeZones[Math.floor(Math.random() * timeZones.length)];
-    document.getElementById('timezone-question').innerText = currentTimeZoneQuestion;
+    currentTimezoneQuestion = timeZones[Math.floor(Math.random() * timeZones.length)];
+    document.getElementById('timezone-question').innerText = currentTimezoneQuestion;
+    possiblePoints = 20;
 };
 
 
-const getTimeZone = async () => {
-    return await fetchData(`https://worldtimeapi.org/api/timezone/${currentTimeZoneQuestion}`);
-};
+const getTimeZone = async () => await fetchData(`https://worldtimeapi.org/api/timezone/${currentTimezoneQuestion}`);
 
 
-const updateRightAnswerCounter = () => {
-    document.getElementById('right-answer-counter').innerText = ++rightAnswerCounter;
-};
+const addPoints = pointsToAdd => {
+    totalPoints += pointsToAdd;
+    updateScore();
+}
+
+const subtractPoints = pointsToSubtract => {
+    totalPoints -= pointsToSubtract;
+    updateScore();
+}
+
+const addResult = (answer, correctAnswer, currentTimezoneQuestion) => {
+    results.push({
+        timezone: currentTimezoneQuestion,
+        answer: answer,
+        correctAnswer: correctAnswer,
+        timeStamp: Date()
+    });
+    console.log(results);
+}
+
+
+const updateScore = () => document.getElementById('total-points').innerText = totalPoints;
+
     
-
 getTimeZones();
 
 
