@@ -31,18 +31,16 @@ const getTimeZones = async () => {
 
 
 const checkAnswer = async answer => {
-    console.log(currentTimeZoneQuestion);
     const timezone = await getTimeZone();
-    console.log(timezone.datetime.substring(11, 16));
+    
     if (answer === timezone.datetime.substring(11, 16)) {
         updateRightAnswerCounter();
-    }
+    };
     nextQuestion();
 };
 
 
 const nextQuestion = () => {
-    console.log(Math.random() * timeZones.length, timeZones.length);
     currentTimeZoneQuestion = timeZones[Math.floor(Math.random() * timeZones.length)];
     document.getElementById('timezone-question').innerText = currentTimeZoneQuestion;
 };

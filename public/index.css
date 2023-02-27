@@ -1,0 +1,34 @@
+body {
+    background-color: black;
+}
+
+.text {
+    color: ghostwhite;
+    margin-bottom: 40px;
+}
+
+button {
+    font-size: 20px;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+#right-answer-counter {
+    margin-bottom: 30px;
+    display: block;
+    font-size: 20px;
+}
+
+input {
+    font-size: 30px;
+    margin-right: 3px;
+}
+#skip-question {
+    background-color: yellow;
+}
+
+#submit-answer {
+    background-color: rgb(48, 220, 45);
+    margin-right: 3px;
+}
