@@ -8,13 +8,34 @@
     <title>Time Guesser</title>
 </head>
 <body>
-    <h1 class="text">What time is it in this timezone or city right now?</h1>
-    <h2 id="timezone-question" class="text"></h2>
-    <span id="total-points-text" class="text">Points: <span id="total-points" class="text">0</span></span>
-    <input id="timezone-answer" type="time">
-    <button id="submit-answer">Submit</button>
-    <button id="skip-question">Skip</button>
 
+    <div id="container">
+        <div id="game-container">
+            <h1 class="text">What time is it in this timezone or city right now?</h1>
+            <h2 id="timezone-question" class="text"></h2>
+            <span id="total-points-text" class="text">Points: <span id="total-points" class="text">0</span></span>
+            <input id="timezone-answer" type="time">
+            <button id="submit-answer">Submit</button>
+            <button id="skip-question">Skip</button>
+
+            <h2 class="text">Rules</h2>
+            <ul class="text">
+                <li>20 points for the right answer in the first attempt and then -4 for each try</li>
+                <li>-5 points for 5 wrong answers and then the question is skipped</li>
+                <li>-2 points for skipping a question</li>
+            </ul>
+        </div>
+
+        <div id="results-container">
+
+        </div>
+    </div>
+
+
+
+    <script src="game.js"></script>
+    <script src="result.js"></script>
+    <script src="timezones.js"></script>
     <script src="index.js"></script>
 </body>
 </html>

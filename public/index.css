@@ -1,10 +1,10 @@
 body {
-    background-color: rgba(0, 0, 0, 0.899);
+    background-color: rgba(0, 0, 0, 0.795);
 }
 
 .text {
     color: ghostwhite;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 button {
@@ -38,4 +38,26 @@ input {
 #submit-answer {
     background-color: rgb(48, 220, 45);
     margin-right: 3px;
+}
+
+li {
+    list-style-type: none;
+}
+
+.points-added {
+    color:rgb(48, 220, 45);
+}
+
+.points-subtracted {
+    color: rgba(225, 22, 22, 0.925);
+}
+
+#total-points {
+    font-weight: bold;
+}
+
+#container {
+    display: flex;
+    justify-content: space-between;
+    padding: 70px 90px;
 }
