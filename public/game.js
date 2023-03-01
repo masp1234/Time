@@ -1,6 +1,7 @@
 let rightAnswerCounter = 0;
 let possiblePoints = 20;
 let totalPoints = 0;
+let currentQuestionAnswers = [];
 const totalPointsElement = document.getElementById('total-points');
 
 const checkAnswer = async answer => {
