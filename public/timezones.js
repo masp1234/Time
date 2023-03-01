@@ -1,5 +1,5 @@
 let timeZones = [];
-let currentTimezoneQuestion;
+let currentQuestionTimezone;
 
 const fetchData = async(url, settings) => {
     const response = await fetch(url, settings);
@@ -15,4 +15,4 @@ const getTimeZones = async () => {
     nextQuestion();
 };
 
-const getTimeZone = async () => await fetchData(`https://worldtimeapi.org/api/timezone/${currentTimezoneQuestion}`);
+const getTimeZone = async () => await fetchData(`https://worldtimeapi.org/api/timezone/${currentQuestionTimezone}`);

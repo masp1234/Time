@@ -1,31 +1,56 @@
 let rightAnswerCounter = 0;
 let possiblePoints = 20;
 let totalPoints = 0;
-let currentQuestionAnswers = [];
 const totalPointsElement = document.getElementById('total-points');
+const hintContainer = document.getElementById('hint-container');
 
 const checkAnswer = async answer => {
-    const timezone = await getTimeZone();
-    const correctAnswer = timezone.datetime.substring(11, 16);
-    let isCorrect = false;
-    if (answer === correctAnswer) {
-        isCorrect = true;
-        rightAnswerCounter++;
-        addPoints(possiblePoints);
-        nextQuestion();
-    }  
-    else possiblePoints = possiblePoints - 4;
+    if (answer.length > 0) {
+        const timezone = await getTimeZone();
+        const correctAnswer = timezone.datetime.substring(11, 16);
+        let isCorrect = false;
+        if (answer === correctAnswer) {
+            hintContainer.innerText = "";
+            isCorrect = true;
+            rightAnswerCounter++;
+            addPoints(possiblePoints);
+            nextQuestion();
+        }  
+        else {
+            possiblePoints = possiblePoints - 4;
+            displayHint(answer, correctAnswer);
+        }
     
-    if (possiblePoints <= 0) {
-        subtractPoints(5);
-        nextQuestion();
+        if (possiblePoints <= 0) {
+            subtractPoints(5);
+            displayCorrectAnswer(correctAnswer);
+        }
     }
-    addResult(answer, correctAnswer, currentTimezoneQuestion, isCorrect);
 };
 
+const displayCorrectAnswer = correctAnswer => {
+    hintContainer.innerText = `The correct answer was: ${correctAnswer}`;
+    nextQuestion();
+    
+}
+
+const displayHint = (answer, correctAnswer) => {
+    const answerNumber = Number(answer.substring(0, 2) + answer.substring(3));
+    const correctAnswerNumber = Number(correctAnswer.substring(0, 2) + correctAnswer.substring(3));
+    if (answerNumber > correctAnswerNumber) hintContainer.innerText = `Hint: it's earlier than ${answer}`;
+
+    else hintContainer.innerText = `Hint: it's later than ${answer}`;
+    
+    
+}
+
 const nextQuestion = () => {
-    currentTimezoneQuestion = timeZones[Math.floor(Math.random() * timeZones.length)];
-    document.getElementById('timezone-question').innerText = currentTimezoneQuestion;
+    setTimeout(() => {
+        hintContainer.innerText = "";
+    }, 2500);
+    
+    currentQuestionTimezone = timeZones[Math.floor(Math.random() * timeZones.length)];
+    document.getElementById('timezone-question').innerText = currentQuestionTimezone;
     possiblePoints = 20;
 };
 
@@ -49,7 +74,6 @@ const subtractPoints = pointsToSubtract => {
     }, 1000);
     
     updateScore();
-    renderResults();
 }
 
 const updateScore = () => document.getElementById('total-points').innerText = totalPoints;

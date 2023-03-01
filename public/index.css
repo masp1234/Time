@@ -1,18 +1,20 @@
 body {
-    background-color: rgba(0, 0, 0, 0.795);
+    background-color: rgba(0, 0, 0, 0.851);
 }
 
-.text {
+.text  {
     color: ghostwhite;
     margin-bottom: 30px;
+    
 }
 
 button {
     font-size: 20px;
     padding: 12px 20px;
     border-radius: 10px;
+    border: none;
     font-weight: bold;
-    color: rgba(0, 0, 0, 0.899);
+    color: rgba(0, 0, 0, 0.851);
     
 }
 button:active {
@@ -30,6 +32,9 @@ button:active {
 input {
     font-size: 30px;
     margin-right: 3px;
+    border-radius: 10px;
+    padding: 6px;
+    margin-bottom: 50px;
 }
 #skip-question {
     background-color: yellow;
@@ -61,3 +66,11 @@ li {
     justify-content: space-between;
     padding: 70px 90px;
 }
+
+#hint-container {
+    font-size: large;
+    color: ghostwhite;
+    margin-left: 20px;
+    font-weight: bold;
+}
+

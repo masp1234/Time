@@ -4,6 +4,7 @@ document.getElementById('submit-answer').addEventListener('click', () => {
 });
 
 document.getElementById('skip-question').addEventListener('click', () => {
+    hintContainer.innerText = "";
     subtractPoints(2);
     nextQuestion();
 });
